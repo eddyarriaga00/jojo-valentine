@@ -27,6 +27,11 @@ Open `index.html` in your browser.
 └── README.md
 ```
 
+## Live site
+```
+https://github.com/eddyarriaga00/jojo-valentine/deployments/github-pages
+```
+
 ## Deploy with GitHub Pages
 1. Push this repo to GitHub.
 2. In the GitHub repo: **Settings → Pages → Build and deployment**

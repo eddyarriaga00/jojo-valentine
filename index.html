@@ -226,6 +226,8 @@
         display: grid;
         gap: 24px;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        align-items: stretch;
+        grid-auto-rows: 1fr;
       }
 
       .love-card {
@@ -238,6 +240,7 @@
         gap: 8px;
         align-content: start;
         text-align: center;
+        height: 100%;
       }
 
       .love-card h3 {
@@ -399,6 +402,8 @@
         display: grid;
         gap: 14px;
         animation: float-in 0.9s ease both;
+        max-height: 90vh;
+        overflow-y: auto;
       }
 
       .love-screen .love-modal h2 {
@@ -414,8 +419,10 @@
       }
 
       .tulip {
-        width: min(320px, 80vw);
+        width: min(360px, 86vw);
         margin: 0 auto;
+        display: grid;
+        place-items: center;
       }
 
       .tulip svg {
@@ -462,6 +469,28 @@
         fill: #ff86bf;
       }
 
+      .tulip .petal.shadow {
+        fill: #d8287b;
+        opacity: 0.7;
+      }
+
+      .tulip .highlight {
+        fill: none;
+        stroke: #ffd4e6;
+        stroke-width: 3;
+        opacity: 0;
+        stroke-linecap: round;
+        animation: bloom 1.2s ease forwards 1s;
+      }
+
+      .tulip .leaf-vein {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.45);
+        stroke-width: 2.4;
+        opacity: 0;
+        animation: bloom 1.1s ease forwards 1.1s;
+      }
+
       .tulip .sparkle {
         fill: #ffd1e5;
         opacity: 0;
@@ -474,6 +503,14 @@
         stroke-width: 6;
         opacity: 0;
         animation: glow-ring 2.4s ease-in-out infinite 1s;
+      }
+
+      .tulip .sparkle.slow {
+        animation-duration: 2.6s;
+      }
+
+      .tulip .sparkle.fast {
+        animation-duration: 1.4s;
       }
 
       @keyframes draw {
@@ -523,6 +560,7 @@
         place-items: center;
         z-index: 999;
         transition: opacity 0.6s ease, transform 0.6s ease;
+        touch-action: none;
       }
 
       .puzzle.hidden {
@@ -541,10 +579,12 @@
         position: relative;
         overflow: hidden;
         animation: glow 2.8s ease-in-out infinite;
+        max-height: 92vh;
+        overflow-y: auto;
       }
 
       .puzzle-title {
-        font-family: "DM Serif Display", "Georgia", serif;
+        font-family: "Cormorant Garamond", "Georgia", serif;
         font-size: 2.2rem;
         margin: 0 0 8px;
       }
@@ -768,6 +808,16 @@
         .note {
           min-height: auto;
         }
+
+        .tray {
+          grid-template-columns: repeat(4, 60px);
+        }
+
+        .piece,
+        .slot {
+          width: 60px;
+          height: 60px;
+        }
       }
 
       @media (max-width: 980px) {
@@ -806,6 +856,20 @@
 
         .note {
           font-size: 0.98rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        section {
+          padding: 50px 0;
+        }
+
+        .hero {
+          padding: 60px 0 70px;
+        }
+
+        .sweet-notes {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -992,11 +1056,19 @@ I LOVE YOU JOJO
     <div class="love-screen" id="loveScreen" aria-live="polite">
       <div class="love-modal">
         <div class="tulip" aria-hidden="true">
-          <svg viewBox="0 0 260 340" role="img" aria-label="Pink tulip animation">
+          <svg viewBox="0 0 400 340" role="img" aria-label="Pink tulip bouquet animation">
             <defs>
               <linearGradient id="tulipStem" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stop-color="#4dc07a" />
                 <stop offset="100%" stop-color="#2e7f52" />
+              </linearGradient>
+              <linearGradient id="petalSide" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stop-color="#ffb3d5" />
+                <stop offset="100%" stop-color="#e62e87" />
+              </linearGradient>
+              <linearGradient id="petalBack" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ff9acb" />
+                <stop offset="100%" stop-color="#ff5aa5" />
               </linearGradient>
               <radialGradient id="tulipGlow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stop-color="#ffe3f0" stop-opacity="0.9" />
@@ -1004,16 +1076,58 @@ I LOVE YOU JOJO
               </radialGradient>
             </defs>
             <ellipse class="glow" cx="130" cy="120" rx="120" ry="100" />
-            <path class="stem" d="M130 300 C132 245 132 200 130 145" stroke="url(#tulipStem)" />
-            <path class="leaf" d="M130 230 C92 225 68 198 52 164" />
-            <path class="leaf" d="M130 215 C168 212 195 190 208 158" />
-            <path class="petal dark" d="M130 95 C110 50 76 38 58 60 C48 90 78 126 110 144 C122 150 128 146 130 136 Z" />
-            <path class="petal light" d="M130 95 C150 50 184 38 202 60 C212 90 182 126 150 144 C138 150 132 146 130 136 Z" />
-            <path class="petal mid" d="M108 100 C112 65 125 45 130 38 C135 45 148 65 152 100 C150 130 134 144 130 146 C126 144 110 130 108 100 Z" />
-            <path class="petal" d="M130 110 C122 120 118 132 118 146 C118 164 124 176 130 182 C136 176 142 164 142 146 C142 132 138 120 130 110 Z" />
-            <circle class="sparkle" cx="60" cy="85" r="6" />
-            <circle class="sparkle" cx="205" cy="95" r="5" />
-            <circle class="sparkle" cx="130" cy="45" r="4" />
+            <g transform="translate(10,0) scale(0.95)">
+              <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
+              <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
+              <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
+              <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
+              <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
+              <path class="petal mid" d="M140 100 C142 58 170 44 192 58 C205 76 196 110 170 132 C154 146 144 142 140 132 Z" />
+              <path class="petal light" d="M130 105 C120 70 92 58 74 74 C64 98 82 128 108 145 C122 154 128 150 130 140 Z" />
+              <path class="petal shadow" d="M148 112 C154 92 174 86 186 98 C196 116 186 140 166 156 C154 166 146 160 144 150 Z" />
+              <path class="petal" d="M136 112 C140 86 160 78 176 92 C188 112 176 140 154 160 C142 174 134 166 132 154 Z" fill="url(#petalSide)" />
+              <path class="petal dark" d="M122 116 C118 92 100 84 86 98 C74 116 84 144 106 164 C118 176 126 170 128 156 Z" />
+              <path class="petal" d="M138 142 C134 154 134 168 140 180 C148 196 162 202 170 202 C166 190 160 176 154 162 C150 152 144 146 138 142 Z" fill="url(#petalBack)" />
+              <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
+              <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
+            </g>
+
+            <g transform="translate(130,-8) scale(0.95)">
+              <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
+              <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
+              <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
+              <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
+              <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
+              <path class="petal mid" d="M140 100 C142 58 170 44 192 58 C205 76 196 110 170 132 C154 146 144 142 140 132 Z" />
+              <path class="petal light" d="M130 105 C120 70 92 58 74 74 C64 98 82 128 108 145 C122 154 128 150 130 140 Z" />
+              <path class="petal shadow" d="M148 112 C154 92 174 86 186 98 C196 116 186 140 166 156 C154 166 146 160 144 150 Z" />
+              <path class="petal" d="M136 112 C140 86 160 78 176 92 C188 112 176 140 154 160 C142 174 134 166 132 154 Z" fill="url(#petalSide)" />
+              <path class="petal dark" d="M122 116 C118 92 100 84 86 98 C74 116 84 144 106 164 C118 176 126 170 128 156 Z" />
+              <path class="petal" d="M138 142 C134 154 134 168 140 180 C148 196 162 202 170 202 C166 190 160 176 154 162 C150 152 144 146 138 142 Z" fill="url(#petalBack)" />
+              <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
+              <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
+            </g>
+
+            <g transform="translate(250,4) scale(0.95)">
+              <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
+              <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
+              <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
+              <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
+              <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
+              <path class="petal mid" d="M140 100 C142 58 170 44 192 58 C205 76 196 110 170 132 C154 146 144 142 140 132 Z" />
+              <path class="petal light" d="M130 105 C120 70 92 58 74 74 C64 98 82 128 108 145 C122 154 128 150 130 140 Z" />
+              <path class="petal shadow" d="M148 112 C154 92 174 86 186 98 C196 116 186 140 166 156 C154 166 146 160 144 150 Z" />
+              <path class="petal" d="M136 112 C140 86 160 78 176 92 C188 112 176 140 154 160 C142 174 134 166 132 154 Z" fill="url(#petalSide)" />
+              <path class="petal dark" d="M122 116 C118 92 100 84 86 98 C74 116 84 144 106 164 C118 176 126 170 128 156 Z" />
+              <path class="petal" d="M138 142 C134 154 134 168 140 180 C148 196 162 202 170 202 C166 190 160 176 154 162 C150 152 144 146 138 142 Z" fill="url(#petalBack)" />
+              <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
+              <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
+            </g>
+
+            <circle class="sparkle slow" cx="66" cy="90" r="6" />
+            <circle class="sparkle fast" cx="320" cy="95" r="5" />
+            <circle class="sparkle" cx="200" cy="55" r="4" />
+            <circle class="sparkle slow" cx="150" cy="135" r="4" />
           </svg>
         </div>
         <h2>I love you.</h2>
@@ -1038,6 +1152,7 @@ I LOVE YOU JOJO
       let dragOffsetX = 0;
       let dragOffsetY = 0;
       let rafId = null;
+      let activePointerId = null;
 
       const resetPieceStyles = (piece) => {
         piece.style.position = "";
@@ -1082,47 +1197,64 @@ I LOVE YOU JOJO
         return closestDist < 60 ? closest : null;
       };
 
+      const startDrag = (piece, clientX, clientY, pointerId = null) => {
+        if (piece.classList.contains("locked")) return;
+        activePiece = piece;
+        activePointerId = pointerId;
+        piece.classList.add("dragging");
+        const rect = piece.getBoundingClientRect();
+        dragOffsetX = clientX - rect.left;
+        dragOffsetY = clientY - rect.top;
+        piece.style.position = "fixed";
+        piece.style.zIndex = "1000";
+        piece.style.width = `${rect.width}px`;
+        piece.style.height = `${rect.height}px`;
+        piece.style.left = `${clientX - dragOffsetX}px`;
+        piece.style.top = `${clientY - dragOffsetY}px`;
+      };
+
+      const moveDrag = (clientX, clientY) => {
+        if (!activePiece) return;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          activePiece.style.left = `${clientX - dragOffsetX}px`;
+          activePiece.style.top = `${clientY - dragOffsetY}px`;
+        });
+      };
+
+      const endDrag = (clientX, clientY) => {
+        if (!activePiece) return;
+        const closestSlot = findClosestSlot(clientX, clientY);
+        if (closestSlot) {
+          lockPieceToSlot(activePiece, closestSlot);
+        } else {
+          resetPieceStyles(activePiece);
+          tray.appendChild(activePiece);
+          puzzleNote.textContent = "Drop a heart onto any open spot.";
+        }
+        activePiece = null;
+        activePointerId = null;
+      };
+
       pieces.forEach((piece) => {
         piece.setAttribute("draggable", "false");
 
         piece.addEventListener("pointerdown", (event) => {
-          if (piece.classList.contains("locked")) return;
-          activePiece = piece;
-          piece.classList.add("dragging");
+          event.preventDefault();
           piece.setPointerCapture(event.pointerId);
-          const rect = piece.getBoundingClientRect();
-          dragOffsetX = event.clientX - rect.left;
-          dragOffsetY = event.clientY - rect.top;
-          piece.style.position = "fixed";
-          piece.style.zIndex = "1000";
-          piece.style.width = `${rect.width}px`;
-          piece.style.height = `${rect.height}px`;
-          piece.style.left = `${event.clientX - dragOffsetX}px`;
-          piece.style.top = `${event.clientY - dragOffsetY}px`;
+          startDrag(piece, event.clientX, event.clientY, event.pointerId);
         });
 
         piece.addEventListener("pointermove", (event) => {
           if (!activePiece || activePiece !== piece) return;
-          if (rafId) cancelAnimationFrame(rafId);
-          rafId = requestAnimationFrame(() => {
-            piece.style.left = `${event.clientX - dragOffsetX}px`;
-            piece.style.top = `${event.clientY - dragOffsetY}px`;
-          });
+          if (activePointerId !== event.pointerId) return;
+          moveDrag(event.clientX, event.clientY);
         });
 
         piece.addEventListener("pointerup", (event) => {
           if (!activePiece || activePiece !== piece) return;
-          const closestSlot = findClosestSlot(event.clientX, event.clientY);
-          const pieceId = piece.dataset.piece;
-
-          if (closestSlot && closestSlot.dataset.slot === pieceId) {
-            lockPieceToSlot(piece, closestSlot);
-          } else {
-            resetPieceStyles(piece);
-            tray.appendChild(piece);
-            puzzleNote.textContent = "Try again — match each piece to its spot.";
-          }
-          activePiece = null;
+          if (activePointerId !== event.pointerId) return;
+          endDrag(event.clientX, event.clientY);
         });
 
         piece.addEventListener("pointercancel", () => {
@@ -1130,7 +1262,44 @@ I LOVE YOU JOJO
           resetPieceStyles(piece);
           tray.appendChild(piece);
           activePiece = null;
+          activePointerId = null;
         });
+
+        piece.addEventListener(
+          "touchstart",
+          (event) => {
+            if (piece.classList.contains("locked")) return;
+            const touch = event.touches[0];
+            if (!touch) return;
+            event.preventDefault();
+            startDrag(piece, touch.clientX, touch.clientY);
+          },
+          { passive: false }
+        );
+
+        piece.addEventListener(
+          "touchmove",
+          (event) => {
+            if (!activePiece || activePiece !== piece) return;
+            const touch = event.touches[0];
+            if (!touch) return;
+            event.preventDefault();
+            moveDrag(touch.clientX, touch.clientY);
+          },
+          { passive: false }
+        );
+
+        piece.addEventListener(
+          "touchend",
+          (event) => {
+            if (!activePiece || activePiece !== piece) return;
+            const touch = event.changedTouches[0];
+            if (!touch) return;
+            event.preventDefault();
+            endDrag(touch.clientX, touch.clientY);
+          },
+          { passive: false }
+        );
       });
 
       unlockBtn.addEventListener("click", () => {
