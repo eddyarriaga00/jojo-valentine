@@ -304,6 +304,10 @@
         object-position: 35% 20%;
       }
 
+      .pos-right img {
+        object-position: 65% 40%;
+      }
+
       .pos-center img {
         object-position: 50% 50%;
       }
@@ -429,6 +433,8 @@
         width: 100%;
         height: auto;
         overflow: visible;
+        display: block;
+        margin: 0 auto;
       }
 
       .tulip .stem {
@@ -599,6 +605,7 @@
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 18px;
         align-items: center;
+        justify-items: center;
       }
 
       .heart-board {
@@ -774,8 +781,10 @@
         }
 
         .heart-board {
-          width: 240px;
-          height: 230px;
+          width: 280px;
+          height: 260px;
+          transform: scale(0.88);
+          transform-origin: top center;
         }
 
         .gallery {
@@ -813,8 +822,7 @@
           grid-template-columns: repeat(4, 60px);
         }
 
-        .piece,
-        .slot {
+        .piece {
           width: 60px;
           height: 60px;
         }
@@ -1002,7 +1010,7 @@
         <h2 class="section-title">Our favorite memories</h2>
         <p class="section-sub">Some of my favorite photos of us together.</p>
         <div class="gallery">
-          <figure class="wide pos-center">
+          <figure class="wide pos-right">
             <img src="assets/photos/photo-1.jpg" alt="Jojo and me smiling" />
           </figure>
           <figure class="tall pos-top">
@@ -1056,7 +1064,7 @@ I LOVE YOU JOJO
     <div class="love-screen" id="loveScreen" aria-live="polite">
       <div class="love-modal">
         <div class="tulip" aria-hidden="true">
-          <svg viewBox="0 0 400 340" role="img" aria-label="Pink tulip bouquet animation">
+          <svg viewBox="0 0 440 340" role="img" aria-label="Pink tulip bouquet animation" preserveAspectRatio="xMidYMid meet">
             <defs>
               <linearGradient id="tulipStem" x1="0" x2="0" y1="0" y2="1">
                 <stop offset="0%" stop-color="#4dc07a" />
@@ -1075,59 +1083,58 @@ I LOVE YOU JOJO
                 <stop offset="100%" stop-color="#ffe3f0" stop-opacity="0" />
               </radialGradient>
             </defs>
-            <ellipse class="glow" cx="130" cy="120" rx="120" ry="100" />
-            <g transform="translate(10,0) scale(0.95)">
-              <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
-              <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
-              <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
-              <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
-              <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
+            <g transform="translate(20,0)">
+              <ellipse class="glow" cx="130" cy="120" rx="120" ry="100" />
+              <g transform="translate(0,0) scale(0.9)">
+                <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
+                <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
+                <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
+                <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
+                <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
               <path class="petal mid" d="M140 100 C142 58 170 44 192 58 C205 76 196 110 170 132 C154 146 144 142 140 132 Z" />
               <path class="petal light" d="M130 105 C120 70 92 58 74 74 C64 98 82 128 108 145 C122 154 128 150 130 140 Z" />
               <path class="petal shadow" d="M148 112 C154 92 174 86 186 98 C196 116 186 140 166 156 C154 166 146 160 144 150 Z" />
               <path class="petal" d="M136 112 C140 86 160 78 176 92 C188 112 176 140 154 160 C142 174 134 166 132 154 Z" fill="url(#petalSide)" />
               <path class="petal dark" d="M122 116 C118 92 100 84 86 98 C74 116 84 144 106 164 C118 176 126 170 128 156 Z" />
               <path class="petal" d="M138 142 C134 154 134 168 140 180 C148 196 162 202 170 202 C166 190 160 176 154 162 C150 152 144 146 138 142 Z" fill="url(#petalBack)" />
-              <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
-              <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
-            </g>
-
-            <g transform="translate(130,-8) scale(0.95)">
-              <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
-              <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
-              <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
-              <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
-              <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
+                <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
+                <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
+              </g>
+              <g transform="translate(140,-8) scale(0.9)">
+                <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
+                <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
+                <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
+                <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
+                <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
               <path class="petal mid" d="M140 100 C142 58 170 44 192 58 C205 76 196 110 170 132 C154 146 144 142 140 132 Z" />
               <path class="petal light" d="M130 105 C120 70 92 58 74 74 C64 98 82 128 108 145 C122 154 128 150 130 140 Z" />
               <path class="petal shadow" d="M148 112 C154 92 174 86 186 98 C196 116 186 140 166 156 C154 166 146 160 144 150 Z" />
               <path class="petal" d="M136 112 C140 86 160 78 176 92 C188 112 176 140 154 160 C142 174 134 166 132 154 Z" fill="url(#petalSide)" />
               <path class="petal dark" d="M122 116 C118 92 100 84 86 98 C74 116 84 144 106 164 C118 176 126 170 128 156 Z" />
               <path class="petal" d="M138 142 C134 154 134 168 140 180 C148 196 162 202 170 202 C166 190 160 176 154 162 C150 152 144 146 138 142 Z" fill="url(#petalBack)" />
-              <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
-              <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
-            </g>
-
-            <g transform="translate(250,4) scale(0.95)">
-              <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
-              <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
-              <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
-              <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
-              <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
+                <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
+                <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
+              </g>
+              <g transform="translate(280,4) scale(0.9)">
+                <path class="stem" d="M128 300 C134 245 138 205 140 150" stroke="url(#tulipStem)" />
+                <path class="leaf" d="M132 230 C92 225 68 198 52 164" />
+                <path class="leaf-vein" d="M132 220 C98 212 80 194 68 170" />
+                <path class="leaf" d="M144 218 C178 214 205 192 218 160" />
+                <path class="leaf-vein" d="M144 208 C172 205 194 188 206 168" />
               <path class="petal mid" d="M140 100 C142 58 170 44 192 58 C205 76 196 110 170 132 C154 146 144 142 140 132 Z" />
               <path class="petal light" d="M130 105 C120 70 92 58 74 74 C64 98 82 128 108 145 C122 154 128 150 130 140 Z" />
               <path class="petal shadow" d="M148 112 C154 92 174 86 186 98 C196 116 186 140 166 156 C154 166 146 160 144 150 Z" />
               <path class="petal" d="M136 112 C140 86 160 78 176 92 C188 112 176 140 154 160 C142 174 134 166 132 154 Z" fill="url(#petalSide)" />
               <path class="petal dark" d="M122 116 C118 92 100 84 86 98 C74 116 84 144 106 164 C118 176 126 170 128 156 Z" />
               <path class="petal" d="M138 142 C134 154 134 168 140 180 C148 196 162 202 170 202 C166 190 160 176 154 162 C150 152 144 146 138 142 Z" fill="url(#petalBack)" />
-              <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
-              <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
+                <path class="highlight" d="M146 108 C150 122 150 140 146 156" />
+                <path class="highlight" d="M126 118 C124 132 126 148 132 162" />
+              </g>
+              <circle class="sparkle slow" cx="66" cy="90" r="6" />
+              <circle class="sparkle fast" cx="360" cy="95" r="5" />
+              <circle class="sparkle" cx="220" cy="55" r="4" />
+              <circle class="sparkle slow" cx="150" cy="135" r="4" />
             </g>
-
-            <circle class="sparkle slow" cx="66" cy="90" r="6" />
-            <circle class="sparkle fast" cx="320" cy="95" r="5" />
-            <circle class="sparkle" cx="200" cy="55" r="4" />
-            <circle class="sparkle slow" cx="150" cy="135" r="4" />
           </svg>
         </div>
         <h2>I love you.</h2>
